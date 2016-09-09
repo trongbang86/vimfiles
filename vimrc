@@ -28,11 +28,18 @@ noremap <Leader>s <esc>:w<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
+set backspace=indent,eol,start
+
 set number
 
 set mouse=a
 
 let g:ctrlp_regexp = 1
+
+set tabstop=4
+
+" allow initialising a new buffer without saving the current one
+set hidden
 
 " Powerline
 set laststatus=2 " To fix Vim Powerline not showing in single window
@@ -40,7 +47,42 @@ let &t_Co=256 " To fix missing colors in Vim Powerline
 
 " Airline
 " Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
  
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+inoremap <c-s> <esc>:wi
+
+nnoremap <Leader>df :call DiffOrig()<CR>
+
+function! DiffOrig()
+		if !exists("b:diff_active") && &buftype == "nofile"
+				echoerr "E: Cannot diff a scratch buffer"
+				return -1
+		elseif expand("%") == ""
+				echoerr "E: Buffer doesn't exist on disk"
+				return -1
+		endif
+
+		if !exists("b:diff_active") || b:diff_active == 0
+				let b:diff_active = 1
+				let l:orig_filetype = &l:filetype
+
+				leftabove vnew
+				let t:diff_buffer = bufnr("%")
+				set buftype=nofile
+
+				read #
+				0delete_
+				let &l:filetype = l:orig_filetype
+
+				diffthis
+				wincmd p
+				diffthis
+		else
+				diffoff
+				execute "bdelete " . t:diff_buffer
+				let b:diff_active = 0
+		endif
+endfunction
