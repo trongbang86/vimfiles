@@ -41,6 +41,9 @@ set tabstop=4
 " allow initialising a new buffer without saving the current one
 set hidden
 
+" for Gdiff to show side by side 
+set diffopt=vertical
+
 " Powerline
 set laststatus=2 " To fix Vim Powerline not showing in single window
 let &t_Co=256 " To fix missing colors in Vim Powerline
