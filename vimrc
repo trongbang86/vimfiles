@@ -36,7 +36,7 @@ set mouse=a
 
 let g:ctrlp_regexp = 1
 
-set tabstop=4
+set tabstop=4 shiftwidth=4 expandtab
 
 " allow initialising a new buffer without saving the current one
 set hidden
