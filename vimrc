@@ -24,6 +24,8 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 noremap <Leader>s <esc>:w<CR>
 
+inoremap <c-z> <esc>u
+
 " SETTINGS
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
