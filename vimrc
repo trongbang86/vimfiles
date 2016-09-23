@@ -15,6 +15,9 @@ noremap <Leader>c <esc>:CtrlP<CR>
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
+" Shortcut to Select All
+noremap <Leader>a <esc>ggvG$
+
 " quickly change to NORMAL mode in interactive mode
 inoremap jk <esc>
 
