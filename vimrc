@@ -27,7 +27,18 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 noremap <Leader>s <esc>:w<CR>
 
-inoremap <c-z> <esc>u
+" Disabled this C-z because it quits VIM
+" while editting
+" inoremap <c-z> <esc>u
+
+" put the cursor into a new line
+" with blank lines on top and bottom
+" and change to insert mode
+nnoremap om o<esc>O
+
+" mapping for Tagbar for listing
+" functions and variables
+nmap <Leader>t :TagbarToggle<CR>
 
 " SETTINGS
 " Use the same symbols as TextMate for tabstops and EOLs
