@@ -9,7 +9,10 @@ filetype plugin indent on
 " change leader key
 let mapleader = ','
 
+" NERD Tree
 noremap <Leader>n <esc>:NERDTreeToggle<CR>
+noremap <Leader>nf <esc>:NERDTreeFind<cr>
+
 noremap <Leader>c <esc>:CtrlP<CR>
 
 " Shortcut to rapidly toggle `set list`
@@ -36,21 +39,37 @@ noremap <Leader>s <esc>:w<CR>
 " and change to insert mode
 nnoremap om o<esc>O
 
+" put the cursor above in insert
+" mode with blank lines surrounding
+nnoremap oa O<esc>o<esc>O
+
 " mapping for Tagbar for listing
 " functions and variables
-nmap <Leader>t :TagbarToggle<CR>
+nmap <Leader>T :TagbarToggle<CR>
+
+nnoremap <Leader>bl <c-^>
+
+" mapping to yank to clipboard
+silent! vunmap <C-c>
+vnoremap <C-c> "*y
+silent! vunmap <C-x>
+vnoremap <C-x> "*ygvd
+silent! iunmap <C-p>
+inoremap <C-p> <C-r>*
+silent! nunmap <C-p>
+nnoremap <C-p> i<C-r>*
 
 " Defining key maps for copying path
 " Convert slashes to backslashes for Windows.
 if has('win32')
-  nmap ,cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap ,cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+  nmap <leader>cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+  nmap <leader>cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
   " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap ,c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+  nmap <leader>c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
-  nmap ,cs :let @*=expand("%")<CR>
-  nmap ,cl :let @*=expand("%:p")<CR>
+  nmap <leader>cs :let @*=expand("%")<CR>
+  nmap <leader>cl :let @*=expand("%:p")<CR>
 endif
 
 " SETTINGS
