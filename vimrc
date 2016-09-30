@@ -15,6 +15,12 @@ noremap <Leader>nf <esc>:NERDTreeFind<cr>
 
 noremap <Leader>c <esc>:CtrlP<CR>
 
+" mapping to toggle search highlight
+nnoremap <Leader>hs :set hlsearch!<cr>
+
+" mapping to toggle wrap
+nnoremap <Leader>wr :set wrap!<cr>
+
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -57,7 +63,10 @@ vnoremap <C-x> "*ygvd
 silent! iunmap <C-p>
 inoremap <C-p> <C-r>*
 silent! nunmap <C-p>
-nnoremap <C-p> i<C-r>*
+nnoremap <C-p> i<C-r>*<esc>
+
+" Store swap files in fixed location, not current directory.
+set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 
 " Defining key maps for copying path
 " Convert slashes to backslashes for Windows.
