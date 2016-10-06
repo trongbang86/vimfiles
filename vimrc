@@ -15,6 +15,10 @@ noremap <Leader>nf <esc>:NERDTreeFind<cr>
 
 noremap <Leader>c <esc>:CtrlP<CR>
 
+" mapping to find words under cursor
+" and to open up quick list
+nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
+
 " mapping to toggle search highlight
 nnoremap <Leader>hs :set hlsearch!<cr>
 
@@ -31,10 +35,36 @@ noremap <Leader>a <esc>ggvG$
 inoremap jk <esc>
 
 " shortcuts to edit and source .vimrc file
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-noremap <Leader>s <esc>:w<CR>
+" shortcuts to edit tmux config
+nnoremap <leader>et :e ~/.tmux.conf<cr>
+
+" shortcuts to edit .bash_profile
+nnoremap <leader>eb :e ~/.bash_profile<cr>
+
+" shortcut to save the current document
+nnoremap <Leader>s :w<CR>
+
+" shortcut to close the current buffer
+nnoremap <Leader>q :q<CR>
+
+" shortcut to move between windows
+nnoremap <Leader>w <C-w><C-w>
+
+" shortcut to make the current windows dominantly
+nnoremap <Leader>ol <C-w><C-o>
+
+" shortcut to increase width of a window
+" when there are 2 vertical splits
+nnoremap <Leader>rw :vertical resize +30<cr>
+
+" shortcut to reload all buffers
+nnoremap <Leader>rb :bufdo e<cr>
+
+" shortcut to BufOnly
+nnoremap <Leader>bo :BufOnly<cr>
 
 " Disabled this C-z because it quits VIM
 " while editting
@@ -53,7 +83,11 @@ nnoremap oa O<esc>o<esc>O
 " functions and variables
 nmap <Leader>T :TagbarToggle<CR>
 
+" buffer last
 nnoremap <Leader>bl <c-^>
+
+" turn off diff window
+nnoremap <Leader>do :windo diffoff<cr>
 
 " mapping to yank to clipboard
 silent! vunmap <C-c>
@@ -71,8 +105,8 @@ set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 " Defining key maps for copying path
 " Convert slashes to backslashes for Windows.
 if has('win32')
-  nmap <leader>cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-  nmap <leader>cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+nmap <leader>cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+nmap <leader>cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
   " This will copy the path in 8.3 short format, for DOS and Windows 9x
   nmap <leader>c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
@@ -84,6 +118,8 @@ endif
 " SETTINGS
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+set ignorecase
 
 set backspace=indent,eol,start
 
@@ -146,3 +182,74 @@ function! DiffOrig()
 				let b:diff_active = 0
 		endif
 endfunction
+
+nnoremap <leader>ft :call SetFileType()<cr>
+function! SetFileType()
+    let filename= expand("%:t")
+    let ext = expand("%:e")    
+    echom "FileName:" . filename
+    echom "Extension:". ext
+
+    if filename == ".bash_profile"
+        let &filetype="sh"
+    elseif filename == ".vimrc"
+        let &filetype="vim"
+    end
+
+    if ext == "js"
+        let &filetype= "javascript"
+    elseif ext == "py"
+        let &filetype= "python"
+    elseif ext == "java"
+        let &filetype= "java"
+    elseif ext == "rb"
+        let &filetype= "ruby"
+    end
+endfunction
+
+" REFERENCE:
+" http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+function! GetBufferList()
+  redir =>buflist
+  silent! ls!
+  redir END
+  return buflist
+endfunction
+
+function! ToggleList(bufname, pfx)
+  let buflist = GetBufferList()
+  for bufnum in map(filter(split(buflist, '\n'), 'v:val =~ "'.a:bufname.'"'), 'str2nr(matchstr(v:val, "\\d\\+"))')
+    if bufwinnr(bufnum) != -1
+      exec(a:pfx.'close')
+      return
+    endif
+  endfor
+  if a:pfx == 'l' && len(getloclist(0)) == 0
+      echohl ErrorMsg
+      echo "Location List is Empty."
+      return
+  endif
+  let winnr = winnr()
+  exec(a:pfx.'open')
+  if winnr() != winnr
+    wincmd p
+  endif
+endfunction
+
+nmap <silent> <leader>ll :call ToggleList("Location List", 'l')<CR>
+nmap <silent> <leader>qf :call ToggleList("Quickfix List", 'c')<CR>
+
+" END: http://vim.wikia.com/wiki/Toggle_to_open_or_close_the_quickfix_window
+
+function! FileStatus()
+    let modified = &modified
+
+    if modified
+        echom "Saved: NO"
+    else
+        echom "Saved: YES"
+    end
+
+endfunction
+
+nnoremap <leader>fs :call FileStatus()<cr>
