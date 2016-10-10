@@ -4,10 +4,10 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+source common_keys.vim
+
 " KEY MAPPINGS
 
-" change leader key
-let mapleader = ','
 
 " NERD Tree
 noremap <Leader>n <esc>:NERDTreeToggle<CR>
@@ -15,104 +15,27 @@ noremap <Leader>nf <esc>:NERDTreeFind<cr>
 
 noremap <Leader>c <esc>:CtrlP<CR>
 
-" mapping to find words under cursor
-" and to open up quick list
-nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
 
-" mapping to toggle search highlight
-nnoremap <Leader>hs :set hlsearch!<cr>
 
-" mapping to toggle wrap
-nnoremap <Leader>wr :set wrap!<cr>
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
 
-" Shortcut to Select All
-noremap <Leader>a <esc>ggvG$
 
-" quickly change to NORMAL mode in interactive mode
-inoremap jk <esc>
-
-" shortcuts to edit and source .vimrc file
-nnoremap <leader>ev :e $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" shortcuts to edit tmux config
-nnoremap <leader>et :e ~/.tmux.conf<cr>
-
-" shortcuts to edit .bash_profile
-nnoremap <leader>eb :e ~/.bash_profile<cr>
-
-" shortcut to save the current document
-nnoremap <Leader>s :w<CR>
-
-" shortcut to close the current buffer
-nnoremap <Leader>q :q<CR>
-
-" shortcut to move between windows
-nnoremap <Leader>w <C-w><C-w>
-
-" shortcut to make the current windows dominantly
-nnoremap <Leader>ol <C-w><C-o>
-
-" shortcut to increase width of a window
-" when there are 2 vertical splits
-nnoremap <Leader>rw :vertical resize +30<cr>
-
-" shortcut to reload all buffers
-nnoremap <Leader>rb :bufdo e<cr>
-
-" shortcut to BufOnly
-nnoremap <Leader>bo :BufOnly<cr>
-
-" Disabled this C-z because it quits VIM
-" while editting
-" inoremap <c-z> <esc>u
-
-" put the cursor into a new line
-" with blank lines on top and bottom
-" and change to insert mode
-nnoremap om o<esc>O
-
-" put the cursor above in insert
-" mode with blank lines surrounding
-nnoremap oa O<esc>o<esc>O
 
 " mapping for Tagbar for listing
 " functions and variables
-nmap <Leader>T :TagbarToggle<CR>
-
-" buffer last
-nnoremap <Leader>bl <c-^>
-
-" turn off diff window
-nnoremap <Leader>do :windo diffoff<cr>
-
-" mapping to yank to clipboard
-silent! vunmap <C-c>
-vnoremap <C-c> "*y
-silent! vunmap <C-x>
-vnoremap <C-x> "*ygvd
-silent! iunmap <C-p>
-inoremap <C-p> <C-r>*
-silent! nunmap <C-p>
-nnoremap <C-p> i<C-r>*<esc>
-
-" Store swap files in fixed location, not current directory.
-set dir=~/.vimswap//,/var/tmp//,/tmp//,.
+nmap <Leader>tb :TagbarToggle<CR>
 
 " Defining key maps for copying path
 " Convert slashes to backslashes for Windows.
 if has('win32')
-nmap <leader>cs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-nmap <leader>cl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+    nmap <leader>fs :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+    nmap <leader>fl :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
-  " This will copy the path in 8.3 short format, for DOS and Windows 9x
-  nmap <leader>c8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
+    " This will copy the path in 8.3 short format, for DOS and Windows 9x
+    nmap <leader>f8 :let @*=substitute(expand("%:p:8"), "/", "\\", "g")<CR>
 else
-  nmap <leader>cs :let @*=expand("%")<CR>
-  nmap <leader>cl :let @*=expand("%:p")<CR>
+    nmap <leader>fs :let @*=expand("%")<CR>
+    nmap <leader>fl :let @*=expand("%:p")<CR>
 endif
 
 " SETTINGS
@@ -204,6 +127,8 @@ function! SetFileType()
         let &filetype= "java"
     elseif ext == "rb"
         let &filetype= "ruby"
+    elseif ext == "md"
+        let &filetype= "markdown"
     end
 endfunction
 
