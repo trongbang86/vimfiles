@@ -5,7 +5,7 @@ SETUP:
 1. cd ~
 2. git clone https://github.com/trongbang86/vimfiles ~/.vim
 3. ln -s ~/.vim/vimrc ~/.vimrc
-4. ln -s .vim/common_keys.vim common_keys.vim
+4. ln -s .vim/common_keys.vim ~/common_keys.vim
 5. ln -s ~/.vim/gvimrc ~/.gvimrc
 6. cd ~/.vim
 7. git submodule init

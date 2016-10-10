@@ -4,7 +4,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-source common_keys.vim
+source ~/common_keys.vim
 
 " KEY MAPPINGS
 
