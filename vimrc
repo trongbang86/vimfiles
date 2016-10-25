@@ -15,12 +15,6 @@ noremap <Leader>nf <esc>:NERDTreeFind<cr>
 
 noremap <Leader>c <esc>:CtrlP<CR>
 
-
-
-
-
-
-
 " mapping for Tagbar for listing
 " functions and variables
 nmap <Leader>tb :TagbarToggle<CR>
@@ -174,6 +168,9 @@ function! FileStatus()
     else
         echom "Saved: YES"
     end
+
+    let filename = expand('%:p')
+    echom "Filename:". filename
 
 endfunction
 

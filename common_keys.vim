@@ -22,6 +22,7 @@ inoremap jk <esc>
 
 " shortcuts to edit and source .vimrc file
 nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>eck :e ~/common_keys.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " shortcuts to edit tmux config
@@ -32,9 +33,6 @@ nnoremap <leader>eb :e ~/.bash_profile<cr>
 
 " shortcut to save the current document
 nnoremap <Leader>s :w<CR>
-
-" shortcut to close the current buffer
-nnoremap <Leader>q :q<CR>
 
 " shortcut to move between windows
 nnoremap <Leader>w <C-w><C-w>
@@ -84,4 +82,19 @@ nnoremap <C-p> i<C-r>*<esc>
 " Store swap files in fixed location, not current directory.
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 
+function! FileQuit()
+    let modified = &modified
+
+    " saving the file if it has changes
+    " before quitting
+    if modified
+        execute "normal! :w\<cr>"
+    end
+
+    execute "normal! :q\<cr>"
+
+endfunction
+
+" shortcut to close the current buffer
+nnoremap <Leader>q :call FileQuit()<cr>
 
