@@ -13,7 +13,9 @@ source ~/common_keys.vim
 noremap <Leader>n <esc>:NERDTreeToggle<CR>
 noremap <Leader>nf <esc>:NERDTreeFind<cr>
 
-noremap <Leader>c <esc>:CtrlP<CR>
+" CtrlP settings
+noremap <Leader>cp <esc>:CtrlP<CR>
+let g:ctrlp_show_hidden = 1
 
 " mapping for Tagbar for listing
 " functions and variables
@@ -102,15 +104,22 @@ endfunction
 
 nnoremap <leader>ft :call SetFileType()<cr>
 function! SetFileType()
+    " reset filetype
+    let &filetype = ''
+
     let filename= expand("%:t")
     let ext = expand("%:e")    
-    echom "FileName:" . filename
-    echom "Extension:". ext
+    " echom "FileName:" . filename
+    " echom "Extension:". ext
 
     if filename == ".bash_profile"
         let &filetype="sh"
     elseif filename == ".vimrc"
         let &filetype="vim"
+    end
+
+    if &filetype != ''
+        return
     end
 
     if ext == "js"
@@ -123,6 +132,8 @@ function! SetFileType()
         let &filetype= "ruby"
     elseif ext == "md"
         let &filetype= "markdown"
+    elseif ext == "vim"
+        let &filetype = "vim"
     end
 endfunction
 
@@ -175,3 +186,6 @@ function! FileStatus()
 endfunction
 
 nnoremap <leader>fs :call FileStatus()<cr>
+
+" Set up key mapping for CamelCaseMotion
+call camelcasemotion#CreateMotionMappings(';')

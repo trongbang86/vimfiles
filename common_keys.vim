@@ -8,6 +8,9 @@ nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
 " mapping to toggle search highlight
 nnoremap <Leader>hs :set hlsearch!<cr>
 
+" mapping to toggle cursor line
+nnoremap <Leader>cl :set cursorline!<cr>
+
 " mapping to toggle wrap
 nnoremap <Leader>wr :set wrap!<cr>
 
@@ -35,7 +38,7 @@ nnoremap <leader>eb :e ~/.bash_profile<cr>
 nnoremap <Leader>s :w<CR>
 
 " shortcut to move between windows
-nnoremap <Leader>w <C-w><C-w>
+nnoremap <Leader>nw <C-w><C-w>
 
 " shortcut to make the current windows dominantly
 nnoremap <Leader>ol <C-w><C-o>
@@ -98,3 +101,8 @@ endfunction
 " shortcut to close the current buffer
 nnoremap <Leader>q :call FileQuit()<cr>
 
+" shortcut to highlight a word under cursor
+nnoremap <Leader>hw :exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))<cr>
+
+" shortcut to turn off matching
+nnoremap <Leader>ho :match none<cr>
