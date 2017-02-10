@@ -1,9 +1,20 @@
 " change leader key
 let mapleader = ','
 
+" mapping to copy into clipboard the current line
+" from first non-empty char to last non-empty char
+nnoremap vl ^v$h"*y
+
+" mapping to alter paste mode
+nnoremap <leader>p :set paste!<cr>
+
 " mapping to find words under cursor
 " and to open up quick list
 nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
+
+" mapping to move up and down quicker
+nnoremap <leader>j 7j<cr>
+nnoremap <leader>k 7k<cr>
 
 " mapping to toggle search highlight
 nnoremap <Leader>hs :set hlsearch!<cr>
@@ -94,7 +105,7 @@ function! FileQuit()
         execute "normal! :w\<cr>"
     end
 
-    execute "normal! :q\<cr>"
+    execute "normal! :bd\<cr>"
 
 endfunction
 
@@ -106,3 +117,7 @@ nnoremap <Leader>hw :exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cw
 
 " shortcut to turn off matching
 nnoremap <Leader>ho :match none<cr>
+
+" shortcut to Gundo
+" a plugin to view history
+nnoremap <Leader>g :GundoToggle<cr>

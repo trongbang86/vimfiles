@@ -4,6 +4,11 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" check one time after 4s of inactivity in normal mode
+set autoread
+au CursorHold * checktime
+au FileChangedShell * echo "Warning: File changed on disk"
+
 source ~/common_keys.vim
 
 " KEY MAPPINGS
@@ -132,8 +137,8 @@ function! SetFileType()
         let &filetype= "ruby"
     elseif ext == "md"
         let &filetype= "markdown"
-    elseif ext == "vim"
-        let &filetype = "vim"
+    else
+        let &filetype = ext
     end
 endfunction
 
