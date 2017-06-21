@@ -13,10 +13,19 @@ source ~/common_keys.vim
 
 " KEY MAPPINGS
 
+" Fugitive
+silent! unmap gd
+silent! unmap gs
+silent! unmap gc
+nnoremap <leader>gd :Gdiff<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gc :Gcommit -m '
 
 " NERD Tree
 noremap <Leader>n <esc>:NERDTreeToggle<CR>
 noremap <Leader>nf <esc>:NERDTreeFind<cr>
+
+noremap <Leader>t2f <esc>:e /Users/bang/documents/temp/t2f.txt<cr>
 
 " CtrlP settings
 noremap <Leader>cp <esc>:CtrlP<CR>

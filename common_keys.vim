@@ -5,16 +5,31 @@ let mapleader = ','
 " from first non-empty char to last non-empty char
 nnoremap vl ^v$h"*y
 
+" mapping for cursorline
+" to know where the cursor is
+nnoremap wh :set cursorline!<cr>
+
 " mapping to alter paste mode
 nnoremap <leader>p :set paste!<cr>
+
+" mapping to close panes
+nnoremap <C-w> :q<cr>
 
 " mapping to find words under cursor
 " and to open up quick list
 nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
 
+" mapping to find words in memory
+" and to open up quick list
+nnoremap fm :vimgrep /<C-R>"/gj %<CR> <bar> :cw<CR>
+
+" mapping to search
+" for the current word under cursor
+nnoremap sw /<C-R><C-W><CR>
+
 " mapping to move up and down quicker
-nnoremap <leader>j 7j<cr>
-nnoremap <leader>k 7k<cr>
+noremap <leader>j 7j<cr>
+noremap <leader>k 7k<cr>
 
 " mapping to toggle search highlight
 nnoremap <Leader>hs :set hlsearch!<cr>
@@ -39,6 +54,10 @@ nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <leader>eck :e ~/common_keys.vim<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" shortcuts to diffget and diffput
+nnoremap dp :diffput<cr>
+nnoremap dg :diffget<cr>
+
 " shortcuts to edit tmux config
 nnoremap <leader>et :e ~/.tmux.conf<cr>
 
@@ -46,7 +65,9 @@ nnoremap <leader>et :e ~/.tmux.conf<cr>
 nnoremap <leader>eb :e ~/.bash_profile<cr>
 
 " shortcut to save the current document
-nnoremap <Leader>s :w<CR>
+noremap <Leader>s :w<CR>
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>
 
 " shortcut to move between windows
 nnoremap <Leader>nw <C-w><C-w>
