@@ -58,6 +58,7 @@ set backspace=indent,eol,start
 
 set number
 
+set ttymouse=xterm2
 set mouse=a
 
 let g:ctrlp_regexp = 1

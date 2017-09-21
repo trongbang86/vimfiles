@@ -15,9 +15,16 @@ nnoremap <leader>p :set paste!<cr>
 " mapping to close panes
 nnoremap <C-w> :q<cr>
 
+" mapping to set fold method
+nnoremap <Leader>fold :setlocal foldmethod=syntax<cr>
+
 " mapping to find words under cursor
 " and to open up quick list
 nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
+
+" mapping to page down/page up
+nnoremap ff <C-f>
+nnoremap FF <C-b>
 
 " mapping to find words in memory
 " and to open up quick list
