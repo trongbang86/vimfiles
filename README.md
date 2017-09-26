@@ -10,6 +10,7 @@ SETUP:
 6. cd ~/.vim
 7. git submodule init
 8. git submodule update
+9. touch ~/.vimrc_after
 
 git submodule foreach git pull origin master
 
