@@ -78,6 +78,7 @@ imap <c-s> <Esc>:w<CR>
 
 " shortcut to move between windows
 nnoremap <Leader>nw <C-w><C-w>
+nnoremap <Leader>w= <C-w>=
 
 " shortcut to make the current windows dominantly
 nnoremap <Leader>ol <C-w><C-o>
@@ -113,9 +114,9 @@ nnoremap <Leader>do :windo diffoff<cr>
 
 " mapping to yank to clipboard
 silent! vunmap <C-c>
-vnoremap <C-c> "*y
+vnoremap <C-c> "*y<cr>
 silent! vunmap <C-x>
-vnoremap <C-x> "*ygvd
+vnoremap <C-x> "*ygvd<cr>
 silent! iunmap <C-p>
 inoremap <C-p> <C-r>*
 silent! nunmap <C-p>
