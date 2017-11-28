@@ -79,6 +79,8 @@ let &t_Co=256 " To fix missing colors in Vim Powerline
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 0
  
+set timeoutlen=200
+
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
