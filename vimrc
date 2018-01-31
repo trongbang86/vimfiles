@@ -152,6 +152,8 @@ function! SetFileType()
         let &filetype= "ruby"
     elseif ext == "md"
         let &filetype= "markdown"
+    elseif ext == "jbuilder"
+        let &filetype= "ruby"
     else
         let &filetype = ext
     end
