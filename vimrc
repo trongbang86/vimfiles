@@ -9,6 +9,9 @@ set autoread
 au CursorHold * checktime
 au FileChangedShell * echo "Warning: File changed on disk"
 
+color desert
+hi CursorLine   cterm=NONE ctermbg=52 ctermfg=NONE
+
 source ~/common_keys.vim
 
 " KEY MAPPINGS
