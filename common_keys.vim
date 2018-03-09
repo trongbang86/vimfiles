@@ -3,7 +3,7 @@ let mapleader = ','
 
 " mapping to copy into clipboard the current line
 " from first non-empty char to last non-empty char
-nnoremap vl ^v$h"*y
+nnoremap vl ^v$h
 
 " mapping for cursorline
 " to know where the cursor is
@@ -150,3 +150,20 @@ nnoremap <Leader>ho :match none<cr>
 " shortcut to Gundo
 " a plugin to view history
 nnoremap <Leader>g :GundoToggle<cr>
+
+" http://vim.wikia.com/wiki/Search_only_over_a_visual_range 
+function! RangeSearch(direction)
+  call inputsave()
+  let g:srchstr = input(a:direction)
+  call inputrestore()
+  if strlen(g:srchstr) > 0
+    let g:srchstr = g:srchstr.
+          \ '\%>'.(line("'<")-1).'l'.
+          \ '\%<'.(line("'>")+1).'l'
+  else
+    let g:srchstr = ''
+  endif
+endfunction
+vnoremap <silent> s/ :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
+vnoremap <silent> s? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
+" EOF
