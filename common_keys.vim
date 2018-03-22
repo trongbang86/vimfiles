@@ -149,8 +149,8 @@ nnoremap <Leader>ho :match none<cr>
 
 " http://vim.wikia.com/wiki/Cleanup_your_HTML
 " format html and xml
-command format_html :%!tidy -q -i --show-errors 0
-command format_xml  :%!tidy -q -i --show-errors 0 -xml
+command FormatHtml :%!tidy -q -i --show-errors 0
+command FormatXml  :%!tidy -q -i --show-errors 0 -xml
 
 " shortcut to Gundo
 " a plugin to view history
