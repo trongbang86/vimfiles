@@ -147,6 +147,11 @@ nnoremap <Leader>hw :exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cw
 " shortcut to turn off matching
 nnoremap <Leader>ho :match none<cr>
 
+" http://vim.wikia.com/wiki/Cleanup_your_HTML
+" format html and xml
+command format_html :%!tidy -q -i --show-errors 0
+command format_xml  :%!tidy -q -i --show-errors 0 -xml
+
 " shortcut to Gundo
 " a plugin to view history
 nnoremap <Leader>g :GundoToggle<cr>
