@@ -12,6 +12,12 @@ nnoremap wh :set cursorline!<cr>
 " mapping to alter paste mode
 nnoremap <leader>p :set paste!<cr>
 
+" mapping to diffthis
+nnoremap <leader>dt :windo diffthis<cr>
+
+" mapping to diffoff
+nnoremap <leader>dt :diffoff<cr>
+
 " mapping to close panes
 nnoremap <C-w> :q<cr>
 
