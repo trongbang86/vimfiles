@@ -47,9 +47,6 @@ noremap <leader>k 7k<cr>
 " mapping to toggle search highlight
 nnoremap <Leader>hs :set hlsearch!<cr>
 
-" mapping to toggle cursor line
-nnoremap <Leader>cl :set cursorline!<cr>
-
 " mapping to toggle wrap
 nnoremap <Leader>wr :set wrap!<cr>
 
