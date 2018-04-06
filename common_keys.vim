@@ -9,6 +9,9 @@ nnoremap vl ^v$h
 " to know where the cursor is
 nnoremap wh :set cursorline!<cr>
 
+" toggle ignorecase
+nnoremap <leader>ic :set ignorecase!<cr>
+
 " mapping to alter paste mode
 nnoremap <leader>p :set paste!<cr>
 
@@ -152,8 +155,8 @@ nnoremap <Leader>ho :match none<cr>
 
 " http://vim.wikia.com/wiki/Cleanup_your_HTML
 " format html and xml
-command FormatHtml :%!tidy -q -i --show-errors 0
-command FormatXml  :%!tidy -q -i --show-errors 0 -xml
+command! FormatHtml :%!tidy -q -i --show-errors 0
+command! FormatXml  :%!tidy -q -i --show-errors 0 -xml
 
 " shortcut to Gundo
 " a plugin to view history
