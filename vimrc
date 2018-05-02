@@ -34,6 +34,9 @@ noremap <Leader>t2f <esc>:e /Users/bang/documents/temp/t2f.txt<cr>
 noremap <Leader>cp <esc>:CtrlP<CR>
 let g:ctrlp_show_hidden = 1
 
+" https://github.com/kien/ctrlp.vim/issues/468
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+
 " mapping for Tagbar for listing
 " functions and variables
 nmap <Leader>tb :TagbarToggle<CR>
