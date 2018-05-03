@@ -35,7 +35,8 @@ noremap <Leader>cp <esc>:CtrlP<CR>
 let g:ctrlp_show_hidden = 1
 
 " https://github.com/kien/ctrlp.vim/issues/468
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+"let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ctrlp_custom_ignore = { 'dir': 'node_modules$\|bower_components$\|\.DS_Store\|\.git$\|build$\|\.idea$\|out$' }
 
 " mapping for Tagbar for listing
 " functions and variables
