@@ -193,9 +193,10 @@ function! SearchVimGrep()
     let l:keyword = input('Enter a keyword to search in this file:')
     call inputrestore()
     try
-        execute 'vimgrep /'.l:keyword.'/gj %'
+
+        execute 'vimgrep /'.escape(l:keyword, '/\').'/gj %'
         execute 'cw'
     catch
-        execute 'echo "Could not find: '.l:keyword.''"'
+        execute 'echo "Could not find: '.l:keyword.'"'
     endtry
 endfunction
