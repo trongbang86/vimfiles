@@ -31,13 +31,18 @@ nnoremap <Leader>fold :setlocal foldmethod=syntax<cr>
 " and to open up quick list
 nnoremap f* :vimgrep /<C-r><C-w>/gj %<cr> <bar> :cw<cr>
 
+" mapping to find words in memory
+" and to open up quick list
+nnoremap fm :vimgrep /<C-R>"/gj %<CR> <bar> :cw<CR>
+
+" mapping to find words by user input
+" and to open up quick list
+nnoremap fs :call SearchVimGrep() <cr>
+
 " mapping to page down/page up
 nnoremap ff <C-f>
 nnoremap FF <C-b>
 
-" mapping to find words in memory
-" and to open up quick list
-nnoremap fm :vimgrep /<C-R>"/gj %<CR> <bar> :cw<CR>
 
 " mapping to search
 " for the current word under cursor
@@ -178,3 +183,19 @@ endfunction
 vnoremap <silent> s/ :<C-U>call RangeSearch('/')<CR>:if strlen(g:srchstr) > 0\|exec '/'.g:srchstr\|endif<CR>
 vnoremap <silent> s? :<C-U>call RangeSearch('?')<CR>:if strlen(g:srchstr) > 0\|exec '?'.g:srchstr\|endif<CR>
 " EOF
+
+" This uses vimgrep to search for words in
+" the current file.
+" If found, it opens QuickFix
+" If not, echo Not Found
+function! SearchVimGrep()
+    call inputsave()
+    let l:keyword = input('Enter a keyword to search in this file:')
+    call inputrestore()
+    try
+        execute 'vimgrep /'.l:keyword.'/gj %'
+        execute 'cw'
+    catch
+        execute 'echo "Could not find: '.l:keyword.''"'
+    endtry
+endfunction
