@@ -19,7 +19,7 @@ nnoremap <leader>p :set paste!<cr>
 nnoremap <leader>dt :windo diffthis<cr>
 
 " mapping to diffoff
-nnoremap <leader>dt :diffoff<cr>
+nnoremap <leader>do :diffoff<cr>
 
 " mapping to close panes
 nnoremap <C-w> :q<cr>
