@@ -216,4 +216,4 @@ nnoremap <leader>fs :call FileStatus()<cr>
 " Set up key mapping for CamelCaseMotion
 call camelcasemotion#CreateMotionMappings(';')
 
-source ~/.vimrc_after
+source ~/custom_bash/.vimrc_after
