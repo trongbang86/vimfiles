@@ -70,7 +70,7 @@ set mouse=a
 
 let g:ctrlp_regexp = 1
 
-set tabstop=4 shiftwidth=4 expandtab
+set tabstop=2 shiftwidth=2 expandtab
 
 " allow initialising a new buffer without saving the current one
 set hidden
@@ -158,6 +158,8 @@ function! SetFileType()
         let &filetype= "markdown"
     elseif ext == "jbuilder"
         let &filetype= "ruby"
+    elseif ext == "yml"
+        let &filetype= "yaml"
     else
         let &filetype = ext
     end
