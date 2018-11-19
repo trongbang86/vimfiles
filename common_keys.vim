@@ -48,6 +48,10 @@ nnoremap FF <C-b>
 " for the current word under cursor
 nnoremap sw /<C-R><C-W><CR>
 
+" mapping to search
+" for the whole current word under cursor
+nnoremap sW /\<<C-R><C-W>\><CR>
+
 " mapping to move up and down quicker
 noremap <leader>j 7j<cr>
 noremap <leader>k 7k<cr>
