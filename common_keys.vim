@@ -166,6 +166,7 @@ nnoremap <Leader>ho :match none<cr>
 " format html and xml
 command! FormatHtml :%!tidy -q -i --show-errors 0
 command! FormatXml  :%!tidy -q -i --show-errors 0 -xml
+command! FormatJson  :%!python -m json.tool
 
 " shortcut to Gundo
 " a plugin to view history
