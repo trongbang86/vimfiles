@@ -88,8 +88,9 @@ nnoremap <leader>eb :e ~/.bash_profile<cr>
 
 " shortcut to save the current document
 noremap <Leader>s :w<CR>
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>
+" MACOS 
+"nmap <c-s> :w<CR>
+"imap <c-s> <Esc>:w<CR>
 
 " shortcut to move between windows
 nnoremap <Leader>nw <C-w><C-w>
@@ -128,14 +129,18 @@ nnoremap <Leader>bl <c-^>
 nnoremap <Leader>do :windo diffoff<cr>
 
 " mapping to yank to clipboard
-silent! vunmap <C-c>
-vnoremap <C-c> "*y<cr>
-silent! vunmap <C-x>
-vnoremap <C-x> "*ygvd<cr>
-silent! iunmap <C-p>
-inoremap <C-p> <C-r>*
-silent! nunmap <C-p>
-nnoremap <C-p> i<C-r>*<esc>
+" MACOS
+"silent! vunmap <C-c>
+"vnoremap <C-c> "*y<cr>
+"silent! vunmap <C-x>
+"vnoremap <C-x> "*ygvd<cr>
+"silent! iunmap <C-p>
+"inoremap <C-p> <C-r>*
+"silent! nunmap <C-p>
+"nnoremap <C-p> i<C-r>*<esc>
+" UBUNTU
+" silent! vunmap <C-c>
+" vnoremap <C-c> :!xclip -f -sel clip<CR>
 
 " Store swap files in fixed location, not current directory.
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
